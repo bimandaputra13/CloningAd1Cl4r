@@ -122,54 +122,6 @@ class _SignUpFormState extends State<SignUpForm> {
             //Positioned(top: 60, left: 0, child: _backButton()),
           ],
         ),
-
-        // Text('CLAR Login - Version 4.8.0',
-        //     style: TextStyle(
-        //         height: 5, fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white)),
-        // Padding(
-        //   padding: const EdgeInsets.all(8),
-
-        //   child: Card(
-        //     child: TextField(
-        //       controller: _usernameTxt,
-        //       decoration: const InputDecoration(
-        //          hintText: 'NIK',
-        //         //  constraints: const BoxConstraints(
-        //         //   maxHeight: 150,
-        //         //   maxWidth: 150,
-        //         // ),
-        //        contentPadding:
-        //            const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
-        //        focusedBorder: OutlineInputBorder(
-        //          borderSide: BorderSide(color: Color.fromARGB(255, 175, 175, 175)),
-        //        ),
-
-        //       ),
-        //     ),
-
-        //   ) ,
-        // ),
-        // Padding(
-        //   padding: const EdgeInsets.all(8),
-        //   child : Card(
-        //   child: TextField(
-        //     obscureText: true,
-        //     controller: _passwordTxt,
-        //     decoration: const InputDecoration(
-        //       hintText: 'Password',
-        //       contentPadding:
-        //           const EdgeInsets.only(left: 14.0, bottom: 8.0, top: 8.0),
-        //       focusedBorder: OutlineInputBorder(
-        //         borderSide: BorderSide(color: Color.fromARGB(255, 175, 175, 175)),
-        //       ),
-        //       enabledBorder: UnderlineInputBorder(
-        //         borderSide: BorderSide(color: Colors.white),
-        //       ),
-
-        //     ),
-        //   ),
-        //   ),
-        // ),
       ),
     );
   }
@@ -293,6 +245,7 @@ Widget _passwordWidget() {
       TextFormField(
         keyboardType: TextInputType.name,
         textInputAction: TextInputAction.next,
+        obscureText: true,
         decoration: InputDecoration(
           labelText: 'Password',
           labelStyle: TextStyle(

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: const MyHomePage(title: 'Selamat datang di Adira Finance'),
+      home: const MyHomePage(title: ''),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -45,14 +45,59 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   title: Text(widget.title,style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255),fontWeight: FontWeight.bold, fontFamily: 'Kanit', fontSize: 25)),
+      //   backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+      //   centerTitle: true,
+      // ),
       appBar: AppBar(
-        title: Text(widget.title,style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255),fontWeight: FontWeight.bold, fontFamily: 'Kanit', fontSize: 25)),
+        leading: IconButton(
+          
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: null,
+        ),
+        title: const Text('Selamat Datang di Adira Finance',
+            style: TextStyle(
+              color: const Color.fromARGB(255, 255, 255, 255),
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Kanit',
+              fontSize: 25
+            ), textAlign: TextAlign.center),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-        centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.exit_to_app),
+            tooltip: 'Log Out',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('Harusnya Balik ke login page')));
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.navigate_next),
+            tooltip: 'Go to the next page',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      title: const Text('Next page'),
+                    ),
+                    body: const Center(
+                      child: Text(
+                        'This is the next page',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  );
+                },
+              ));
+            },
+          ),
+        ],
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
-      
         children: [
           SideMenu(
             controller: sideMenu,
@@ -89,19 +134,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             footer: Padding(
               padding: const EdgeInsets.all(8.0),
-               child: Container(
-              //   decoration: BoxDecoration(
-              //       color: Color.fromARGB(255, 49, 67, 75),
-              //       borderRadius: BorderRadius.circular(12)),
-              //   child: Padding(
-              //     padding:
-              //         const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-              //     child: Text(
-              //       'mohada',
-              //       style: TextStyle(fontSize: 15, color: Colors.grey[800]),
-              //     ),
-              //   ),
-              ),
+              child: Container(
+                  //   decoration: BoxDecoration(
+                  //       color: Color.fromARGB(255, 49, 67, 75),
+                  //       borderRadius: BorderRadius.circular(12)),
+                  //   child: Padding(
+                  //     padding:
+                  //         const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                  //     child: Text(
+                  //       'mohada',
+                  //       style: TextStyle(fontSize: 15, color: Colors.grey[800]),
+                  //     ),
+                  //   ),
+                  ),
             ),
             items: [
               SideMenuItem(
@@ -114,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //    '3',
                 //    style: TextStyle(color: Colors.white),
                 //  ),
-               // tooltipContent: "This is a tooltip for Dashboard item",
+                // tooltipContent: "This is a tooltip for Dashboard item",
               ),
               SideMenuItem(
                 title: 'Management Commercial Fleet',
@@ -127,7 +172,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: 'Manajemen Sistem',
                 onTap: (index, _) {
                   sideMenu.changePage(index);
-                  
                 },
                 icon: const Icon(Icons.account_circle_sharp),
               ),
@@ -153,18 +197,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 icon: const Icon(Icons.restart_alt_rounded),
               ),
-              // SideMenuItem(
-              //   onTap:(index, _){
-              //     sideMenu.changePage(index);
-              //   },
-              //   icon: const Icon(Icons.image_rounded),
-              // ),
-              // SideMenuItem(
-              //   title: 'Only Title',
-              //   onTap:(index, _){
-              //     sideMenu.changePage(index);
-              //   },
-              // ),
               const SideMenuItem(
                 title: 'Manajemen Warehouse',
                 icon: Icon(Icons.warehouse),
