@@ -1,7 +1,7 @@
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
-import 'package:flexible_tree_view/flexible_tree_view.dart';
 
+const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 void main() {
   runApp(const MyApp());
 }
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -29,8 +30,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   PageController pageController = PageController();
   SideMenuController sideMenu = SideMenuController();
-
-  get _showLines => false;
 
   @override
   void initState() {
@@ -40,34 +39,34 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+  String dropdownValue = list.first;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(widget.title,style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255),fontWeight: FontWeight.bold, fontFamily: 'Kanit', fontSize: 25)),
-      //   backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-      //   centerTitle: true,
-      // ),
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Color.fromARGB(255, 0, 0, 0)),
-          onPressed: null,
-        ),
-        title: const Text('Selamat Datang di Adira Finance',
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            ),
+            onPressed: null),
+        title: const Text('Selamat datang di Adira Finance',
             style: TextStyle(
-                color: const Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 255, 255, 255),
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Kanit',
-                fontSize: 25),
-            textAlign: TextAlign.center),
+                fontSize: 25)),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.exit_to_app),
             tooltip: 'Log Out',
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Harusnya Balik ke login page')));
+              Navigator.pushNamed(context, '/');
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Berhasil keluar')));
             },
           ),
           IconButton(
@@ -96,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SideMenu(
+         SideMenu(
             controller: sideMenu,
             style: SideMenuStyle(
               // showTooltip: false,
@@ -208,34 +207,239 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Expanded(
             child: PageView(
-              
               controller: pageController,
               children: [
                 Container(
-                   color: Colors.white,
-                   child: const Center(
-                     child: Text(
-                       'Home',
-                       style: TextStyle(fontSize: 35),
-                     ),
-                   ),
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const SizedBox(height: 5),
+                      Card(
+                        child: TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            minimumSize: Size(20, 20),
+                          ),
+                          child: const Text(
+                            'To Do List',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        child: TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            minimumSize: Size(20, 20),
+                          ),
+                          child: const Text(
+                            'Track Your Request',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        child: TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            minimumSize: Size(20, 20),
+                          ),
+                          child: const Text(
+                            'Monitor Your Request',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Divider(
+                        endIndent: 8,
+                        indent: 8,
+                      ),
+                      const SizedBox(height: 50),
+                      Container(
+                        child: const Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Text('Nama',
+                                    style: TextStyle(
+                                        fontFamily: 'Sans',
+                                        fontWeight: FontWeight.bold)),
+                                SizedBox(width: 100),
+                                Text(':',
+                                    style: TextStyle(
+                                        fontFamily: 'Sans',
+                                        fontWeight: FontWeight.bold)),
+                                SizedBox(width: 10),
+                                Text('Anik Widiastuti',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Sans',
+                                        color: Colors.black)),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    Text('NIK',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 115),
+                                    Text(':',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 10),
+                                    Text('10081654',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black)),
+                                  ],
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    Text('No Hp',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 98),
+                                    Text(':',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 10),
+                                    Text('081380636708',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black)),
+                                  ],
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    Text('Email',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 105),
+                                    Text(':',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 10),
+                                    Text('anik.widiastuti@adira.co.id',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black)),
+                                  ],
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    Text('Role',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 111),
+                                    Text(':',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 10),
+                                    Text('COLLECTION DEVELOPMENT OFFICER',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black)),
+                                  ],
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    Text('Jabatan',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 92),
+                                    Text(':',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold)),
+                                    SizedBox(width: 10),
+                                    Text('COLLECTION DEVELOPMENT OFFICER',
+                                        style: TextStyle(
+                                            fontFamily: 'Sans',
+                                            fontWeight: FontWeight.bold))
+                                  ],
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-
-                TextButton(onPressed: (){Navigator.pushNamed(context, '/');} , child: Text('WorkflowCommercial Fleet')),
-                // Container(
-                //   color: Colors.white,
-                //   child: const Center(
-                //     child: Text(
-                //       'Manajemen Commercial Fleet',
-                //       style: TextStyle(fontSize: 35),
-                //     ),
-                //   ),
-                // ),
                 Container(
                   color: Colors.white,
                   child: const Center(
                     child: Text(
-                      'Manajemen Sistem',
+                      'Users',
+                      style: TextStyle(fontSize: 35),
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.white,
+                  child: const Center(
+                    child: Text(
+                      'Files',
                       style: TextStyle(fontSize: 35),
                     ),
                   ),
@@ -283,43 +487,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
 }
-
- _buildExpandableContent(Vehicle vehicle) {
-    List<Widget> columnContent = [];
-
-    for (String content in vehicle.contents)
-      columnContent.add(
-        ListTile(
-          title: Text(content, style: TextStyle(fontSize: 18.0),),
-          leading: Icon(vehicle.icon),
-        ),
-      );
-
-    return columnContent;
-  }
-
-
- class Vehicle {
-  final String title;
-  List<String> contents = [];
-  final IconData icon;
-
-  Vehicle(this.title, this.contents, this.icon);
-}
-
-List<Vehicle> vehicles = [
-  Vehicle(
-    'Bike',
-    ['Vehicle no. 1', 'Vehicle no. 2', 'Vehicle no. 7', 'Vehicle no. 10'],
-    Icons.motorcycle,
-  ),
-  Vehicle(
-    'Cars',
-    ['Vehicle no. 3', 'Vehicle no. 4', 'Vehicle no. 6'],
-    Icons.directions_car,
-  ),
-];
-
- 
