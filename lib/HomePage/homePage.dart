@@ -1,5 +1,6 @@
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
+import 'package:flexible_tree_view/flexible_tree_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,17 +16,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: const MyHomePage(title: ''),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -33,6 +29,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   PageController pageController = PageController();
   SideMenuController sideMenu = SideMenuController();
+
+  get _showLines => false;
 
   @override
   void initState() {
@@ -52,17 +50,16 @@ class _MyHomePageState extends State<MyHomePage> {
       // ),
       appBar: AppBar(
         leading: IconButton(
-          
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.arrow_back, color: Color.fromARGB(255, 0, 0, 0)),
           onPressed: null,
         ),
         title: const Text('Selamat Datang di Adira Finance',
             style: TextStyle(
-              color: const Color.fromARGB(255, 255, 255, 255),
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Kanit',
-              fontSize: 25
-            ), textAlign: TextAlign.center),
+                color: const Color.fromARGB(255, 255, 255, 255),
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Kanit',
+                fontSize: 25),
+            textAlign: TextAlign.center),
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         actions: <Widget>[
           IconButton(
@@ -105,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // showTooltip: false,
               displayMode: SideMenuDisplayMode.auto,
               hoverColor: Color.fromARGB(255, 172, 172, 172),
-              selectedHoverColor: Color.fromARGB(255, 240, 240, 240),
+              selectedHoverColor: Color.fromARGB(255, 191, 191, 191),
               selectedColor: Color.fromARGB(255, 42, 42, 41),
               selectedTitleTextStyle: const TextStyle(color: Colors.white),
               selectedIconColor: Colors.white,
@@ -149,23 +146,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
             ),
             items: [
+              
               SideMenuItem(
+                
                 title: 'Home',
                 onTap: (index, _) {
                   sideMenu.changePage(index);
                 },
                 icon: const Icon(Icons.home),
-                //  badgeContent: const Text(
-                //    '3',
-                //    style: TextStyle(color: Colors.white),
-                //  ),
-                // tooltipContent: "This is a tooltip for Dashboard item",
               ),
               SideMenuItem(
                 title: 'Management Commercial Fleet',
                 onTap: (index, _) {
                   sideMenu.changePage(index);
                 },
+                
                 icon: const Icon(Icons.menu_book_rounded),
               ),
               SideMenuItem(
@@ -213,31 +208,34 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Expanded(
             child: PageView(
+              
               controller: pageController,
               children: [
                 Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Home',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
+                   color: Colors.white,
+                   child: const Center(
+                     child: Text(
+                       'Home',
+                       style: TextStyle(fontSize: 35),
+                     ),
+                   ),
                 ),
+
+                TextButton(onPressed: (){Navigator.pushNamed(context, '/');} , child: Text('WorkflowCommercial Fleet')),
+                // Container(
+                //   color: Colors.white,
+                //   child: const Center(
+                //     child: Text(
+                //       'Manajemen Commercial Fleet',
+                //       style: TextStyle(fontSize: 35),
+                //     ),
+                //   ),
+                // ),
                 Container(
                   color: Colors.white,
                   child: const Center(
                     child: Text(
-                      'Users',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Files',
+                      'Manajemen Sistem',
                       style: TextStyle(fontSize: 35),
                     ),
                   ),
@@ -285,4 +283,43 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
 }
+
+ _buildExpandableContent(Vehicle vehicle) {
+    List<Widget> columnContent = [];
+
+    for (String content in vehicle.contents)
+      columnContent.add(
+        ListTile(
+          title: Text(content, style: TextStyle(fontSize: 18.0),),
+          leading: Icon(vehicle.icon),
+        ),
+      );
+
+    return columnContent;
+  }
+
+
+ class Vehicle {
+  final String title;
+  List<String> contents = [];
+  final IconData icon;
+
+  Vehicle(this.title, this.contents, this.icon);
+}
+
+List<Vehicle> vehicles = [
+  Vehicle(
+    'Bike',
+    ['Vehicle no. 1', 'Vehicle no. 2', 'Vehicle no. 7', 'Vehicle no. 10'],
+    Icons.motorcycle,
+  ),
+  Vehicle(
+    'Cars',
+    ['Vehicle no. 3', 'Vehicle no. 4', 'Vehicle no. 6'],
+    Icons.directions_car,
+  ),
+];
+
+ 
